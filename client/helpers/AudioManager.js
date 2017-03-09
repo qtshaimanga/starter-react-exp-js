@@ -1,46 +1,69 @@
 import Howler from 'howler'
-import { sounds } from '../config/ressources'
+import Emitter from './Emitter'
+import { events } from '../config/store'
 
-export default class AudioManager {
-
-  /**
-   * Creates an instance of AudioManager.
-   * 
-   * @memberOf AudioManager
-   */
+class AudioManager {
+  
   constructor() {
 
-    this.sounds = {}
+    this.sounds = []
 
-    for ( let i = 0; i < sounds.length; i++ ) {
+    this.bind()
+    this.addListeners()
 
-      this.sounds[ sounds[i].id ] = this.load( sounds[i].file, sounds[i].options )
+  }
 
-    }
+  bind() {
+
+    [ 'onWindowBlur', 'onWindowFocus' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) )
+
+  }
+
+  addListeners() {
+
+    Emitter.on( events.WINDOW_ON_FOCUS, this.onWindowFocus )
+    Emitter.on( events.WINDOW_ON_BLUR, this.onWindowBlur )
+
+  }
+
+  onWindowFocus() {
+
+    Howler.muted = false
+
+  }
+
+  onWindowBlur() {
+
+    Howler.muted = true
 
   }
 
   /**
-   * Load sound
+   * Load audio
    * 
-   * @param {String} name 
-   * @param {Array} options
-   * @returns 
+   * @param {String} url 
+   * @param {function} onLoad 
+   * @param {function} onSucess 
+   * @param {function} onReject 
+   * @param {String} id 
    * 
    * @memberOf AudioManager
    */
-  load( name, options = { loop: false, volume: 1 } ) {
+  load( url, onLoad, onSucess, onReject, id, options = { volume: 1, loop: false } ) {
 
-    const sound = new Howler.Howl({
-
-      src: [ 'assets/sounds/' + name + '.mp3' ],
+    const audio = new Howler.Howl({
+      src: url,
+      volume: options.volume,
       loop: options.loop,
-      volume: options.volume
-      
+      onload: () => {
+
+        this.sounds[ id ] = audio
+        onLoad( audio )
+
+      }
     })
-
-    return sound
-
+    
   }
 
   /**
@@ -52,6 +75,8 @@ export default class AudioManager {
    * @memberOf AudioManager
    */
   get( id ) {
+
+    if( typeof this.sounds[ id ] === 'undefined' ) return false
 
     return this.sounds[ id ]
 
@@ -66,8 +91,11 @@ export default class AudioManager {
    */
   play( id ) {
 
+    if( typeof this.sounds[ id ] === 'undefined' ) return
     this.sounds[ id ].play()
 
   }
 
 }
+
+export default new AudioManager()

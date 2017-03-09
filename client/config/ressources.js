@@ -1,12 +1,16 @@
-export default {
-  sounds: [
-    {
-      id: 'ambient',
-      file: 'ambient',
-      options: {
-        loop: true,
-        volume: 1
-      } 
+export default [
+  {
+    type: 'audio',
+    id: 'ambient-sound',
+    url: 'assets/sounds/ambient.mp3',
+    options: {
+      loop: true,
+      volume: 0.1
     }
-  ]
-}
+  },
+  {
+    type: 'model',
+    id: 'polar-bear',
+    url: 'assets/models/polar-bear.awd'
+  }
+]
