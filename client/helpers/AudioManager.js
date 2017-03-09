@@ -7,6 +7,7 @@ class AudioManager {
   constructor() {
 
     this.sounds = []
+    this.blockMute = false
 
     this.bind()
     this.addListeners()
@@ -36,11 +37,20 @@ class AudioManager {
   unmute() {
 
     Howler.mute( false )
+    this.blockMute = false
+
+  }
+
+  lockMute() {
+
+    this.blockMute = true
+    this.mute()
 
   }
 
   onWindowFocus() {
 
+    if( this.blockMute ) return
     this.unmute()
 
   }
