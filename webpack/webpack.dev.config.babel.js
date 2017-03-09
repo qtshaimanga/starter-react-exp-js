@@ -15,7 +15,7 @@ export default {
       'three'
     ],
     app: [
-      './client/index.js'
+      './client/App.js'
     ]
   },
   output: {
@@ -65,9 +65,11 @@ export default {
             loader: 'postcss-loader',
             options: {
               plugins: () => {
+
                 return [
                   autoprefixer( { browsers: [ 'last 2 versions' ] } )
                 ]
+
               }
             }
           },
@@ -79,8 +81,32 @@ export default {
       {
         test: /\.(woff|woff2|ttf|eot|svg)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader?name=fonts/[name].[ext]'
+      },
+      {
+        test: /node_modules/,
+        loader: 'ify-loader'
+      },
+      {
+        test: /\.(glsl|frag|vert)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'raw-loader'
+          },
+          {
+            loader: 'glslify-loader'
+          }
+        ]
       }
     ]
+  },
+  devServer: {
+    contentBase: path.join( __dirname, 'static' ),
+    compress: false,
+    port: 3000,
+    stats: 'verbose',
+    historyApiFallback: true,
+    host: '0.0.0.0'
   },
   plugins: [
     new HtmlWebpackPlugin( {
