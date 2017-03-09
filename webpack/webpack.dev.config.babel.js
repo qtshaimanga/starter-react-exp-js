@@ -109,29 +109,26 @@ export default {
     host: '0.0.0.0'
   },
   plugins: [
-    new HtmlWebpackPlugin( {
+    new HtmlWebpackPlugin({
       template: 'client/templates/index.tpl.ejs',
       inject: 'body',
       filename: 'index.html',
       hash: true,
       environment: process.env.NODE_ENV
-    } ),
-    new webpack.optimize.CommonsChunkPlugin( {
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.bundle.js'
-    } ),
-    new webpack.DefinePlugin( {
+    }),
+    new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV ),
       '__DEV__': JSON.stringify( true ),
       '__PROD__': JSON.stringify( false )
-    } ),
-    new webpack.ProvidePlugin( {
+    }),
+    new webpack.ProvidePlugin({
       'dom': 'dom-hand',
       'THREE': 'three'
-    } ),
-    new CopyWebpackPlugin( [
-      { from: 'static' }
-    ],
-    { ignore: [ '.DS_Store', '.keep' ] } )
+    }),
+    new CopyWebpackPlugin( [ { from: 'static' } ], { ignore: [ '.DS_Store', '.keep' ] } )
   ]
 }

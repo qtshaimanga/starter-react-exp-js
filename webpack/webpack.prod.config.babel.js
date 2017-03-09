@@ -53,7 +53,7 @@ export default {
       {
         test: /\.styl$/,
         exclude: /node_modules/,
-        use: ExtractTextPlugin.extract( {
+        use: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
           use: [
             {
@@ -75,7 +75,7 @@ export default {
               loader: 'stylus-loader'
             },
           ]
-        } )
+        })
       },
       {
         test: /\.(woff|woff2|ttf|eot|svg)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -108,19 +108,16 @@ export default {
       environment: process.env.NODE_ENV
     } ),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin( {
+    new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV ),
       '__DEV__': JSON.stringify( true ),
       '__PROD__': JSON.stringify( false )
-    } ),
-    new webpack.ProvidePlugin( {
+    }),
+    new webpack.ProvidePlugin({
       'dom': 'dom-hand',
       'THREE': 'three'
-    } ),
-    new CopyWebpackPlugin( [
-      { from: 'static' }
-    ],
-    { ignore: [ '.DS_Store', '.keep' ] } ),
+    }),
+    new CopyWebpackPlugin( [ { from: 'static' } ], { ignore: [ '.DS_Store', '.keep' ] } ),
     new webpack.optimize.UglifyJsPlugin( {
       compress: {
         warnings: false,
