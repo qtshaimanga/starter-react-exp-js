@@ -1,4 +1,4 @@
-import Howler from 'howler'
+import { Howl, Howler } from 'howler'
 import Emitter from './Emitter'
 import { events } from '../config/store'
 
@@ -27,15 +27,27 @@ class AudioManager {
 
   }
 
+  mute() {
+
+    Howler.mute( true )
+
+  }
+
+  unmute() {
+
+    Howler.mute( false )
+
+  }
+
   onWindowFocus() {
 
-    Howler.muted = false
+    this.unmute()
 
   }
 
   onWindowBlur() {
 
-    Howler.muted = true
+    this.mute()
 
   }
 
@@ -52,7 +64,7 @@ class AudioManager {
    */
   load( url, onLoad, onSucess, onReject, id, options = { volume: 1, loop: false } ) {
 
-    const audio = new Howler.Howl({
+    const audio = new Howl({
       src: url,
       volume: options.volume,
       loop: options.loop,
@@ -92,7 +104,39 @@ class AudioManager {
   play( id ) {
 
     if( typeof this.sounds[ id ] === 'undefined' ) return
-    this.sounds[ id ].play()
+    return this.sounds[ id ].play()
+
+  }
+
+  /**
+   * Fade sound by id
+   * 
+   * @param {String} id 
+   * @param {Float} start 
+   * @param {Float} end 
+   * @param {Int} duration (in ms)
+   * @param {Int} soundId 
+   * 
+   * @memberOf AudioManager
+   */
+  fade( id, start, end, duration, soundId ) {
+
+    this.sounds[ id ].fade( start, end, duration, soundId )
+
+  }
+
+  /**
+   * Set the rate of playback for a sound by id
+   * 
+   * @param {String} id 
+   * @param {Float} speed 
+   * @param {Int} soundId 
+   * 
+   * @memberOf AudioManager
+   */
+  rate( id, speed, soundId ) {
+
+    this.sounds[ id ].rate( speed, soundId )
 
   }
 

@@ -5,7 +5,7 @@ export default [
     url: 'assets/sounds/ambient.mp3',
     options: {
       loop: true,
-      volume: 0.1
+      volume: 1
     }
   },
   {
