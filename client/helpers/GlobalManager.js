@@ -16,7 +16,7 @@ class GlobalManager {
 
   bind() {
 
-    [ 'onWindowResize', 'onMouseMove', 'onWindowBlur', 'onWindowFocus' ]
+    [ 'onWindowResize', 'onMouseMove', 'onMouseUp', 'onMouseDown', 'onWindowBlur', 'onWindowFocus' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) )
 
   }
@@ -25,6 +25,8 @@ class GlobalManager {
 
     dom.event.on( window, 'resize', this.onWindowResize )
     dom.event.on( window, 'mousemove', this.onMouseMove )
+    dom.event.on( window, 'mouseup', this.onMouseUp )
+    dom.event.on( window, 'mousedown', this.onMouseDown )
     dom.event.on( window, 'blur', this.onWindowBlur )
     dom.event.on( window, 'focus', this.onWindowFocus )
 
@@ -36,7 +38,7 @@ class GlobalManager {
     this.windowSize.h = window.innerHeight
     this.orientation = ( this.windowSize.w > this.windowSize.h ) ? device.LANDSCAPE : device.PORTRAIT
 
-    Emitter.emit( events.WINDOW_ON_RESIZE, this.windowSize )
+    Emitter.emit( events.WINDOW_RESIZE, this.windowSize )
 
   }
 
@@ -50,6 +52,18 @@ class GlobalManager {
     this.mouse.nY = (this.mouse.y / this.windowSize.h) * 2 + 1
 
     Emitter.emit( events.MOUSE_MOVE, this.mouse )
+
+  }
+
+  onMouseUp() {
+
+    Emitter.emit( events.MOUSE_UP )
+
+  }
+
+  onMouseDown() {
+
+    Emitter.emit( events.MOUSE_DOWN )
 
   }
 

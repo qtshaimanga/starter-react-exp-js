@@ -1,9 +1,6 @@
 import Emitter from '../helpers/Emitter'
 import { events } from '../config/store'
 
-/**
-* Loader component
-*/
 class Loader {
 
   constructor() {
@@ -51,10 +48,15 @@ class Loader {
 
       } })
 
-      TweenMax.to( this.$el, 1, { opacity: 0, ease: Expo.easeOut, delay: 0.5, onComplete: () => {
+      TweenMax.to( [ this.$els.progress, this.$els.bar ], 1, { opacity: 0, ease: Sine.easeIn, onComplete: () => {
+
+        Emitter.emit( events.APP_START )
+        
+      } })
+
+      TweenMax.to( this.$el, 1, { opacity: 0, ease: Sine.easeIn, delay: 1, onComplete: () => {
 
         this.$el.style.display = 'none'
-        Emitter.emit( events.APP_START )
 
       } })
 
