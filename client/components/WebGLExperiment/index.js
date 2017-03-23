@@ -1,3 +1,5 @@
+import Scene from './core/Scene'
+
 export default class WebGLExperiment {
 
   constructor( root, ressources ) {

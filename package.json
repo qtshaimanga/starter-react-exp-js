@@ -4,8 +4,8 @@
   "description": "Experiment boilerplate with three.js, Wagner, Webpack 2 & gsap",
   "main": "client/App.js",
   "scripts": {
-    "start": "NODE_ENV=DEV webpack-dev-server --config webpack/webpack.dev.config.babel.js",
-    "build": "NODE_ENV=PROD webpack --config webpack/webpack.prod.config.babel.js --progress --profile --colors"
+    "start": "cross-env NODE_ENV=DEV webpack-dev-server --config webpack/webpack.dev.config.babel.js",
+    "build": "cross-env NODE_ENV=PROD webpack --config webpack/webpack.prod.config.babel.js --progress --profile --colors"
   },
   "repository": "git+https://github.com/avanderpotte/threejs-boilerplate.git",
   "keywords": [

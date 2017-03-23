@@ -34,7 +34,7 @@ class AssetsLoader {
 
       const { type, id, url, options } = ressource
 
-      const promise = new Promise( ( resolve, reject ) => {
+      const promise = new Promise(( resolve, reject ) => {
 
         getLoader( type ).load(
           url,
@@ -46,7 +46,7 @@ class AssetsLoader {
 
             Emitter.emit( events.RESSOURCES_PROGRESS, this.currentProgress / this.totalProgress )
 
-            if(this.currentProgress >= this.totalProgress) this.load()
+            if( this.currentProgress >= this.totalProgress ) this.load()
 
           },
           () => null,

@@ -10,9 +10,9 @@ export default class PolarBear extends THREE.Object3D {
       metalness: 0.5
     })
 
-    model.traverse((child) => {
+    model.traverse(( child ) => {
 
-      if (child instanceof THREE.Mesh) {
+      if ( child instanceof THREE.Mesh ) {
 
         child.material = material
 

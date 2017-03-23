@@ -42,7 +42,7 @@ class GlobalManager {
 
   }
 
-  onMouseMove(e) {
+  onMouseMove( e ) {
 
     e.preventDefault()
 

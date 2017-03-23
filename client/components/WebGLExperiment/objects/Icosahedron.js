@@ -16,7 +16,7 @@ export default class Icosahedron extends THREE.Object3D {
 
     const mesh = new THREE.Mesh( geometry, material )
 
-    this.add(mesh)
+    this.add( mesh )
     
   }
 
