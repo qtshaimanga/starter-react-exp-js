@@ -1,5 +1,5 @@
 {
-  "extends": "eslint:recommended",
+  "extends": [ "eslint:recommended", "plugin:react/recommended" ],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
@@ -21,7 +21,8 @@
     "objectLiteralShorthandProperties": true,
     "spread": true,
     "superInFunctions": true,
-    "templateStrings": true
+    "templateStrings": true,
+    "jsx": true
   },
   "plugin": [
     "react"

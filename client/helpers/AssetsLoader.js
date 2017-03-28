@@ -71,4 +71,4 @@ class AssetsLoader {
 
 }
 
-export default new AssetsLoader()
+export default AssetsLoader

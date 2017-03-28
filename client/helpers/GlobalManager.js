@@ -1,15 +1,22 @@
 import { events, device } from '../config/store'
 import Emitter from './Emitter'
+import MobileDetect from 'mobile-detect'
+import getContext from 'get-canvas-context'
+
+const testCanvas = document.createElement('canvas')
+const md = new MobileDetect(window.navigator.userAgent)
 
 class GlobalManager {
 
   constructor() {
 
     this.windowSize = { w: window.innerWidth, h: window.innerHeight }
+    this.device = { mobile: false, supportWebGL: false }
     this.mouse = { x: 0, y: 0, nX: 0, nY: 0 }
 
     this.bind()
     this.addListeners()
+    this.checkDevice()
     this.onWindowResize()
 
   }
@@ -76,6 +83,13 @@ class GlobalManager {
   onWindowFocus() {
 
     Emitter.emit( events.WINDOW_ON_FOCUS )
+
+  }
+
+  checkDevice() {
+
+    this.device.mobile = ( md.mobile() || md.tablet() ) ? true : false
+    this.device.supportWebGL = getContext( 'webgl', { canvas: testCanvas } ) ? true : false
 
   }
 

@@ -6,15 +6,17 @@ body
 
 .full
   position absolute
+  z-index 1
   top 0
   left 0
   width 100%
   height 100%
+  background-color $WHITE
 
 .app
   @extend .full
-  background-color $WHITE
-  z-index 1
-
+  
+.main
+  @extend .full
   canvas
     background-color $WHITE

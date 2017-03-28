@@ -1,6 +1,4 @@
-import App from './components/WebGLExperiment/index'
-
-ReactDOM.render(
-  <App />,
-  document.querySelector('.app')
-);
+import DesktopApp from './app/desktop'
+// TODO: Add mobile test to init MobileApp
+const App = new DesktopApp()
+App.init()
