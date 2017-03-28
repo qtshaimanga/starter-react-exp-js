@@ -1,4 +1,4 @@
-const events = {
+const EventsConstants = {
 
   WINDOW_RESIZE: 'WINDOW_RESIZE',
   WINDOW_ON_FOCUS: 'WINDOW_ON_FOCUS',
@@ -9,11 +9,11 @@ const events = {
   MOUSE_DOWN: 'MOUSE_DOWN',
   MOUSE_UP: 'MOUSE_UP',
 
-  RESSOURCES_PROGRESS: 'RESSOURCES_PROGRESS',
+  RESOURCES_PROGRESS: 'RESOURCES_PROGRESS',
   RESOURCES_READY: 'RESOURCES_READY',
 
   APP_START: 'APP_START'
 
 }
 
-export default events
+export default EventsConstants

@@ -1,32 +1,39 @@
-import './style/app.styl'
-import domready from 'domready'
 import loop from 'raf-loop'
 import stats from 'stats.js'
-import GlobalManager from '../../helpers/GlobalManager'
-import AssetsLoader from '../../helpers/AssetsLoader'
-import Emitter from '../../helpers/Emitter'
-import AudioManager from '../../helpers/AudioManager'
-import { events } from '../../config/store'
-import LoaderComponent from '../../components/Loader'
+import GlobalManager from './../../../../helpers/GlobalManager'
+import Emitter from './../../../../helpers/Emitter'
+import AudioManager from './../../../../helpers/AudioManager'
+import { events } from './../../../../config/store'
 import Scene from './core/Scene'
 import Icosahedron from './objects/Icosahedron'
 import PolarBear from './objects/PolarBear'
 
-class App extends React.Component {
+class WebGLExperiment extends React.Component {
 
-  constructor() {
+  constructor( props ) {
 
+    super()
+    
+    this.resources = props.resources
     this.manager = GlobalManager
-    this.root = dom.select( '.app' )
 
     this.DELTA_TIME = 0
     this.CURRENT_TIME = 0
 
+  }
 
-    this.initLoader()
+  render() {
+
+    return(
+      <div className="canvas-container" ref="parent"></div>
+    )
+
+  }
+
+  componentDidMount() {
 
     this.scene = new Scene( this.manager.windowSize.w, this.manager.windowSize.h )
-    this.root.appendChild( this.scene.renderer.domElement )
+    this.refs.parent.appendChild( this.scene.renderer.domElement )
 
     Emitter.on( events.APP_START, () => {
 
@@ -38,48 +45,30 @@ class App extends React.Component {
 
   }
 
-  initLoader() {
-
-    this.ressources = {}
-
-    this.loaderComponent = new LoaderComponent()
-
-    this.loader = AssetsLoader
-    this.loader
-      .load()
-      .then( ressources => {
-
-        ressources.forEach( ({ id, resource }) => this.ressources[ id ] = resource )
-        Emitter.emit( events.RESSOURCES_READY, this.ressources )
-
-      } )
-
-  }
-
   start() {
 
     this.clock = new THREE.Clock()
 
     this.stats = new stats()
-    this.root.appendChild( this.stats.dom )
+    this.refs.parent.appendChild( this.stats.dom )
 
     this.Icosahedron = new Icosahedron()
     this.scene.add( this.Icosahedron )
 
-    this.polarBear = new PolarBear( this.ressources[ 'polar-bear' ] )
+    this.polarBear = new PolarBear( this.resources[ 'polar-bear' ] )
     this.scene.add( this.polarBear )
 
     this.bind()
     this.addListeners()
 
-    this.loop = loop( this.render )
+    this.loop = loop( this.update )
     this.loop.start()
 
   }
 
   bind() {
 
-    [ 'resize', 'render' ]
+    [ 'resize', 'update' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) )
 
   }
@@ -96,7 +85,7 @@ class App extends React.Component {
 
   }
 
-  render() {
+  update() {
 
     this.stats.begin()
 
@@ -112,11 +101,4 @@ class App extends React.Component {
 
 }
 
-export default App;
-
-
-// domready( () => {
-//
-//   new App()
-//
-// } )
+export default WebGLExperiment

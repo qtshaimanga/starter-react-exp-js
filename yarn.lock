@@ -2169,12 +2169,16 @@ etag@~1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.0.tgz#6f631aef336d6c46362b51764044ce216be3c051"
 
-event-emitter@^0.3.4, event-emitter@~0.3.4:
+event-emitter@~0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/event-emitter/-/event-emitter-0.3.4.tgz#8d63ddfb4cfe1fae3b32ca265c4c720222080bb5"
   dependencies:
     d "~0.1.1"
     es5-ext "~0.10.7"
+
+eventemitter2@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-4.0.0.tgz#0754a5107f598ef36a21b56b2f08b047e8f895ec"
 
 eventemitter3@1.x.x:
   version "1.2.0"
@@ -2306,7 +2310,13 @@ faye-websocket@~0.11.0:
   dependencies:
     websocket-driver ">=0.5.1"
 
-fbjs@^0.8.1, fbjs@^0.8.4:
+fbemitter@^2.0.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/fbemitter/-/fbemitter-2.1.1.tgz#523e14fdaf5248805bb02f62efc33be703f51865"
+  dependencies:
+    fbjs "^0.8.4"
+
+fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.4:
   version "0.8.11"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.11.tgz#340b590b8a2278a01ef7467c07a16da9b753db24"
   dependencies:
@@ -2398,6 +2408,13 @@ flat-cache@^1.2.1:
 flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
+
+flux@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/flux/-/flux-3.1.2.tgz#8c170addf95b8cb2febb3ddd640aa3e24505762f"
+  dependencies:
+    fbemitter "^2.0.0"
+    fbjs "^0.8.0"
 
 for-each@~0.3.2:
   version "0.3.2"
@@ -2974,6 +2991,10 @@ ify-loader@^1.0.3:
 ignore@^3.2.0:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.2.4.tgz#4055e03596729a8fabe45a43c100ad5ed815c4e8"
+
+immutable@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
 
 imurmurhash@^0.1.4:
   version "0.1.4"

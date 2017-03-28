@@ -1,28 +1,30 @@
 {
-  "extends": [ "eslint:recommended", "plugin:react/recommended" ],
+  "extends": [ "eslint:recommended" ],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
     "node": true,
     "es6": true
   },
-  "ecmaFeatures": {
-    "arrowFunctions": true,
-    "blockBindings": true,
-    "classes": true,
-    "defaultParams": true,
-    "destructuring": true,
-    "forOf": true,
-    "generators": false,
-    "modules": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralDuplicateProperties": false,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "spread": true,
-    "superInFunctions": true,
-    "templateStrings": true,
-    "jsx": true
+  "parserOptions": {
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "blockBindings": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "forOf": true,
+      "generators": false,
+      "modules": true,
+      "objectLiteralComputedProperties": true,
+      "objectLiteralDuplicateProperties": false,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true,
+      "jsx": true
+    }
   },
   "plugin": [
     "react"
@@ -34,7 +36,8 @@
     "no-console": 0,
     "array-bracket-spacing": [ 2, "always" ],
     "object-curly-spacing": [ 2, "always" ],
-    "padded-blocks": [ 2, { "blocks": "always", "classes": "always" } ]
+    "padded-blocks": [ 2, { "blocks": "always", "classes": "always" } ],
+    "no-unused-vars": "off"
   },
   "globals": {
     "__DEV__": true,
