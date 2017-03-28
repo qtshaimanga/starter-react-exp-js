@@ -12,7 +12,9 @@ export default {
     vendor: [
       'gsap',
       'dom-hand',
-      'three'
+      'three',
+      'react',
+      'react-dom'
     ],
     app: [
       './client/App.js'
@@ -127,7 +129,9 @@ export default {
     }),
     new webpack.ProvidePlugin({
       'dom': 'dom-hand',
-      'THREE': 'three'
+      'THREE': 'three',
+      'React': 'react',
+      'ReactDOM': 'react-dom'
     }),
     new CopyWebpackPlugin( [ { from: 'static' } ], { ignore: [ '.DS_Store', '.keep' ] } )
   ]

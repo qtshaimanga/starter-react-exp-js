@@ -51,7 +51,7 @@ class Loader {
       TweenMax.to( [ this.$els.progress, this.$els.bar ], 1, { opacity: 0, ease: Sine.easeIn, onComplete: () => {
 
         Emitter.emit( events.APP_START )
-        
+
       } })
 
       TweenMax.to( this.$el, 1, { opacity: 0, ease: Sine.easeIn, delay: 1, onComplete: () => {
@@ -71,7 +71,7 @@ class Loader {
       } })
 
     } else {
-      
+
       this.progress = 0
       this.tweenProgress = 0
       this.$els.progress.innerHTML = `${this.progress}%`
