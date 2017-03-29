@@ -1,9 +1,12 @@
+import Store from './../../../../../flux/store'
+
 export default class PolarBear extends THREE.Object3D {
 
-  constructor( model ) {
+  constructor() {
 
     super()
 
+    const model = Store.getResource( 'polar-bear' )
     const material = new THREE.MeshStandardMaterial({
       color: 0x7BDFF3,
       roughness: 0.18,

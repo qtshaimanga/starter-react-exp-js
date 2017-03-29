@@ -9,7 +9,9 @@ const Store = assign({}, EventEmitter2.prototype, {
 
   Size: { w: window.innerWidth, h: window.innerHeight },
   Mouse: { x: 0, y: 0, nX: 0, nY: 0 },
-  Device:  { orientation: DeviceConstants.PORTRAIT }
+  Device:  { orientation: DeviceConstants.PORTRAIT },
+  Resources: {},
+  getResource: ( id ) => Store.Resources[ id ]
 
 })
 
@@ -27,6 +29,10 @@ Store.dispatchToken = Dispatcher.register(( payload ) => {
       break
     case EventsConstants.MOUSE_MOVE:
       Store.Mouse = item
+      Store.emit( actionType, item )
+      break
+    case EventsConstants.RESOURCES_READY:
+      Store.Resources = item
       Store.emit( actionType, item )
       break
     default:

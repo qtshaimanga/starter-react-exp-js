@@ -1,9 +1,8 @@
 import loop from 'raf-loop'
 import stats from 'stats.js'
-import GlobalManager from './../../../../helpers/GlobalManager'
-import Emitter from './../../../../helpers/Emitter'
+import Store from './../../../../flux/store'
 import AudioManager from './../../../../helpers/AudioManager'
-import { events } from './../../../../config/store'
+import EventsConstants from './../../../../flux/constants/EventsConstants'
 import Scene from './core/Scene'
 import Icosahedron from './objects/Icosahedron'
 import PolarBear from './objects/PolarBear'
@@ -15,7 +14,6 @@ class WebGLExperiment extends React.Component {
     super()
     
     this.resources = props.resources
-    this.manager = GlobalManager
 
     this.DELTA_TIME = 0
     this.CURRENT_TIME = 0
@@ -32,10 +30,10 @@ class WebGLExperiment extends React.Component {
 
   componentDidMount() {
 
-    this.scene = new Scene( this.manager.windowSize.w, this.manager.windowSize.h )
+    this.scene = new Scene( Store.Size.w, Store.Size.h )
     this.refs.parent.appendChild( this.scene.renderer.domElement )
 
-    Emitter.on( events.APP_START, () => {
+    Store.on( EventsConstants.APP_START, () => {
 
       this.ambient = AudioManager.play( 'ambient-sound' )
       AudioManager.fade( 'ambient-sound', 0, 2, 1000, this.ambient )
@@ -55,7 +53,7 @@ class WebGLExperiment extends React.Component {
     this.Icosahedron = new Icosahedron()
     this.scene.add( this.Icosahedron )
 
-    this.polarBear = new PolarBear( this.resources[ 'polar-bear' ] )
+    this.polarBear = new PolarBear()
     this.scene.add( this.polarBear )
 
     this.bind()
@@ -75,13 +73,13 @@ class WebGLExperiment extends React.Component {
 
   addListeners() {
 
-    Emitter.on( events.WINDOW_RESIZE, this.resize )
+    Store.on( EventsConstants.WINDOW_RESIZE, this.resize )
 
   }
 
   resize() {
 
-    this.scene.resize( this.manager.windowSize.w, this.manager.windowSize.h )
+    this.scene.resize( Store.Size.w, Store.Size.h )
 
   }
 

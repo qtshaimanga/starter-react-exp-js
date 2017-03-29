@@ -1,6 +1,7 @@
 import './Loader.styl'
-import Emitter from './../../../../helpers/Emitter'
-import { events } from './../../../../config/store'
+import Store from './../../../../flux/store'
+import Actions from './../../../../flux/actions'
+import EventsConstants from './../../../../flux/constants/EventsConstants'
 
 class Loader extends React.Component {
 
@@ -47,7 +48,7 @@ class Loader extends React.Component {
 
   addListeners() {
 
-    Emitter.on( events.RESSOURCES_PROGRESS, this.onResourceProgress )
+    Store.on( EventsConstants.RESOURCES_PROGRESS, this.onResourceProgress )
 
   }
 
@@ -70,7 +71,7 @@ class Loader extends React.Component {
 
       TweenMax.to( [ this.refs.progress, this.refs.bar ], 1, { opacity: 0, ease: Sine.easeIn, onComplete: () => {
 
-        Emitter.emit( events.APP_START )
+        Actions.startApp()
 
       } })
 

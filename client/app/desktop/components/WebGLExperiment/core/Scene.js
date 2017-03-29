@@ -1,5 +1,5 @@
-import Emitter from './../../../../../helpers/Emitter'
-import { events } from './../../../../../config/store'
+import Store from './../../../../../flux/store'
+import EventsConstants from './../../../../../flux/constants/EventsConstants'
 import OrbitControls from './../../../../../utils/webgl/OrbitControls'
 import Wagner from '@superguigui/wagner'
 import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass'
@@ -53,8 +53,8 @@ export default class Scene extends THREE.Scene {
 
   addListeners() {
 
-    Emitter.on( events.MOUSE_UP, this.onMouseUp )
-    Emitter.on( events.MOUSE_DOWN, this.onMouseDown )
+    Store.on( EventsConstants.MOUSE_UP, this.onMouseUp )
+    Store.on( EventsConstants.MOUSE_DOWN, this.onMouseDown )
     
   }
 

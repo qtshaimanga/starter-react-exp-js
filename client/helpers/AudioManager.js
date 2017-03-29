@@ -1,12 +1,11 @@
 import { Howl, Howler } from 'howler'
-import Emitter from './Emitter'
-import { events } from '../config/store'
+import Store from './../flux/store'
+import EventsConstants from './../flux/constants/EventsConstants'
 
 class AudioManager {
   
   constructor() {
 
-    this.sounds = []
     this.blockMute = false
 
     this.bind()
@@ -23,8 +22,8 @@ class AudioManager {
 
   addListeners() {
 
-    Emitter.on( events.WINDOW_ON_FOCUS, this.onWindowFocus )
-    Emitter.on( events.WINDOW_ON_BLUR, this.onWindowBlur )
+    Store.on( EventsConstants.WINDOW_ON_FOCUS, this.onWindowFocus )
+    Store.on( EventsConstants.WINDOW_ON_BLUR, this.onWindowBlur )
 
   }
 
@@ -62,15 +61,13 @@ class AudioManager {
   }
 
   /**
-   * Load audio
-   * 
-   * @param {String} url 
+   * Load audio file
+   * @param {string} url 
    * @param {function} onLoad 
    * @param {function} onSucess 
    * @param {function} onReject 
-   * @param {String} id 
-   * 
-   * @memberOf AudioManager
+   * @param {string} id 
+   * @param {array} options 
    */
   load( url, onLoad, onSucess, onReject, id, options = { volume: 1, loop: false } ) {
 
@@ -80,7 +77,6 @@ class AudioManager {
       loop: options.loop,
       onload: () => {
 
-        this.sounds[ id ] = audio
         onLoad( audio )
 
       }
@@ -90,63 +86,55 @@ class AudioManager {
 
   /**
    * Get sound by id
-   * 
-   * @param {String} id 
-   * @returns sound
-   * 
-   * @memberOf AudioManager
+   * @param {string} id 
    */
   get( id ) {
 
-    if( typeof this.sounds[ id ] === 'undefined' ) return false
+    const sound = Store.getResource( id )
 
-    return this.sounds[ id ]
+    if( typeof sound === 'undefined' ) return false
+    return sound
 
   }
 
   /**
    * Play sound by id
-   * 
-   * @param {String} id 
-   * 
-   * @memberOf AudioManager
+   * @param {string} id 
    */
   play( id ) {
 
-    if( typeof this.sounds[ id ] === 'undefined' ) return
-    return this.sounds[ id ].play()
+    const sound = Store.getResource( id )
+    
+    if( typeof sound === 'undefined' ) return
+    return sound.play()
 
   }
 
   /**
    * Fade sound by id
-   * 
-   * @param {String} id 
-   * @param {Float} start 
-   * @param {Float} end 
-   * @param {Int} duration (in ms)
-   * @param {Int} soundId 
-   * 
-   * @memberOf AudioManager
+   * @param {string} id 
+   * @param {float} start 
+   * @param {float} end 
+   * @param {float} duration 
+   * @param {int} soundId 
    */
   fade( id, start, end, duration, soundId ) {
 
-    this.sounds[ id ].fade( start, end, duration, soundId )
+    const sound = Store.getResource( id )
+    sound.fade( start, end, duration, soundId )
 
   }
 
   /**
-   * Set the rate of playback for a sound by id
-   * 
-   * @param {String} id 
-   * @param {Float} speed 
-   * @param {Int} soundId 
-   * 
-   * @memberOf AudioManager
+   * Rate sound at id
+   * @param {string} id 
+   * @param {float} speed 
+   * @param {int} soundId 
    */
   rate( id, speed, soundId ) {
 
-    this.sounds[ id ].rate( speed, soundId )
+    const sound = Store.getResource( id )
+    sound.rate( speed, soundId )
 
   }
 

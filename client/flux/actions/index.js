@@ -51,6 +51,30 @@ const Actions = {
       item: null
     })
 
+  },
+  onResourceProgress( progress ) {
+
+    Dispatcher.dispatch({
+      type: EventsConstants.RESOURCES_PROGRESS,
+      item: progress
+    })
+
+  },
+  onResourceReady( resources ) {
+
+    Dispatcher.dispatch({
+      type: EventsConstants.RESOURCES_READY,
+      item: resources
+    })
+
+  },
+  startApp() {
+
+    Dispatcher.dispatch({
+      type: EventsConstants.APP_START,
+      item: null
+    })
+
   }
 
 }

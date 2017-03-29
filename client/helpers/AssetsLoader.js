@@ -1,15 +1,15 @@
 import AWDLoader from '../utils/webgl/AWDLoader'
 import AudioManager from './AudioManager'
 import VideoManager from './VideoManager'
-import Emitter from './Emitter'
+import Actions from './../flux/actions'
 import ressources from '../config/ressources'
-import { events } from '../config/store'
 
 class AssetsLoader {
 
   constructor() {
 
     this.promises = []
+    this.resources = []
     this.totalProgress = ressources.length
     this.currentProgress = 0
 
@@ -43,10 +43,12 @@ class AssetsLoader {
             resolve( { id, resource } )
 
             this.currentProgress++
+            this.resources[ id ] = resource
 
-            Emitter.emit( events.RESSOURCES_PROGRESS, this.currentProgress / this.totalProgress )
+            Actions.onResourceProgress( this.currentProgress / this.totalProgress )
 
-            if( this.currentProgress >= this.totalProgress ) this.load()
+            if ( this.currentProgress >= this.totalProgress ) this.load()
+            if ( this.currentProgress === this.totalProgress ) Actions.onResourceReady( this.resources )
 
           },
           () => null,

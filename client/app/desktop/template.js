@@ -1,7 +1,7 @@
-// import Loader from './components/Loader'
-// import WebGLExperiment from './components/WebGLExperiment'
-// import AssetsLoader from './../../helpers/AssetsLoader'
-import Store from './../../flux/store/'
+import Loader from './components/Loader'
+import WebGLExperiment from './components/WebGLExperiment'
+import AssetsLoader from './../../helpers/AssetsLoader'
+import Actions from './../../flux/actions'
 import EventsConstants from './../../flux/constants/EventsConstants'
 
 export default class AppTemplate extends React.Component {
@@ -9,15 +9,8 @@ export default class AppTemplate extends React.Component {
   constructor() {
 
     super()
-    this.resources = {}
-    
-    console.log( Store.Mouse )
-    Store.on( EventsConstants.MOUSE_MOVE, ( mouse ) => {
 
-      console.log( mouse )
-
-    } )
-    // this.initLoader()
+    this.initLoader()
 
   }
 
@@ -25,8 +18,8 @@ export default class AppTemplate extends React.Component {
 
     return(
       <div className="main">
-        {/*<Loader />
-        <WebGLExperiment resources={ this.resources }/>*/}
+        <Loader />
+        <WebGLExperiment />
       </div>
     )
 
@@ -34,15 +27,8 @@ export default class AppTemplate extends React.Component {
 
   initLoader() {
 
-    // this.loader = new AssetsLoader()
-    // this.loader
-    //   .load()
-    //   .then( resources => {
-
-    //     resources.forEach( ({ id, resource }) => this.resources[ id ] = resource )
-    //     Emitter.emit( events.RESOURCES_READY, this.resources )
-
-    //   } )
+    this.loader = new AssetsLoader()
+    this.loader.load()
 
   }
 
