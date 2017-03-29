@@ -1,22 +1,23 @@
 // import Loader from './components/Loader'
 // import WebGLExperiment from './components/WebGLExperiment'
 // import AssetsLoader from './../../helpers/AssetsLoader'
-import Store from './../../store'
-import EventsConstants from './../../store/constants/EventsConstants'
+import Store from './../../flux/store/'
+import EventsConstants from './../../flux/constants/EventsConstants'
 
 export default class AppTemplate extends React.Component {
 
   constructor() {
-    
+
     super()
     this.resources = {}
+    
     console.log( Store.Mouse )
+    Store.on( EventsConstants.MOUSE_MOVE, ( mouse ) => {
+
+      console.log( mouse )
+
+    } )
     // this.initLoader()
-    // Store.on( EventsConstants.MOUSE_MOVE, ( mouse ) => {
-
-    //   console.log( mouse )
-
-    // } )
 
   }
 

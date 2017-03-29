@@ -1,67 +1,76 @@
-import Actions from './actions'
-import DeviceConstants from './constants/DeviceConstants'
-import EventsConstants from './constants/EventsConstants'
-import MobileDetect from 'mobile-detect'
-import getContext from 'get-canvas-context'
+import Actions from './../../flux/actions/'
 
 
-const md = new MobileDetect( window.navigator.userAgent )
-const testCanvas = document.createElement( 'canvas' )
+class InitialState {
 
-const onWindowResize = () => {
+  constructor(){
 
-  _windowSize.w = window.innerWidth
-  _windowSize.h = window.innerHeight
-  _device = ( this.windowSize.w > this.windowSize.h ) ? DeviceConstants.LANDSCAPE : DeviceConstants.PORTRAIT
-  Actions.onWindowResize( _windowSize.w, _windowSize.h )
+    this.bind()
+    this.addListeners()
+
+  }
+
+  bind() {
+
+    [ 'onWindowResize', 'onMouseMove', 'onMouseUp', 'onMouseDown', 'onWindowBlur', 'onWindowFocus' ]
+         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) )
+
+  }
+
+  addListeners() {
+
+    dom.event.on( window, 'resize', this.onWindowResize )
+    dom.event.on( window, 'mousemove', this.onMouseMove )
+    dom.event.on( window, 'mouseup', this.onMouseUp )
+    dom.event.on( window, 'mousedown', this.onMouseDown )
+    dom.event.on( window, 'blur', this.onWindowBlur )
+    dom.event.on( window, 'focus', this.onWindowFocus )
+
+  }
+
+  onWindowResize = () => {
+
+    Actions.onWindowResize( window.innerWidth, window.innerHeight )
+
+  }
+
+  onMouseMove = ( e ) => {
+
+    e.preventDefault()
+    const _mouse = { x: 0, y: 0, nX: 0, nY: 0 }
+
+    _mouse.x  = e.clientX || _mouse.x
+    _mouse.y  = e.clientY || _mouse.y
+    _mouse.nX = ( _mouse.x / window.innerWidth ) * 2 - 1
+    _mouse.nY = ( _mouse.y / window.innerHeight ) * 2 + 1
+    Actions.onMouseMove( _mouse )
+
+  }
+
+  onMouseUp = () => {
+
+    Actions.onMouseUp()
+
+  }
+
+  onMouseDown = () => {
+
+    Actions.onMouseDown()
+
+  }
+
+  onWindowBlur = () => {
+
+    Actions.onWindowBlur()
+
+  }
+
+  onWindowFocus = () => {
+
+    Actions.onWindowFocus()
+
+  }
 
 }
 
-const onMouseMove = ( e ) => {
-
-  e.preventDefault()
-  _mouse.x  = e.clientX || _mouse.x
-  _mouse.y  = e.clientY || _mouse.y
-  _mouse.nX = ( _mouse.x / _windowSize.w ) * 2 - 1
-  _mouse.nY = ( _mouse.y / _windowSize.h ) * 2 + 1
-  Actions.onMouseMove( _mouse )
-
-}
-
-const onMouseUp = () => {
-
-  Actions.onMouseUp()
-
-}
-
-const onMouseDown = () => {
-
-  Actions.onMouseDown()
-
-}
-
-const onWindowBlur = () => {
-
-  Actions.onWindowBlur()
-
-}
-
-const onWindowFocus = () => {
-
-  Actions.onWindowFocus()
-
-}
-
-const checkDevice = () => {
-
-  _device.mobile = ( md.mobile() || md.tablet() ) ? true : false
-  _device.supportWebGL = getContext( 'webgl', { canvas: testCanvas } ) ? true : false
-
-}
-
-dom.event.on( window, 'resize', onWindowResize )
-dom.event.on( window, 'mousemove', onMouseMove )
-dom.event.on( window, 'mouseup', onMouseUp )
-dom.event.on( window, 'mousedown', onMouseDown )
-dom.event.on( window, 'blur', onWindowBlur )
-dom.event.on( window, 'focus', onWindowFocus )
+export default InitialState
