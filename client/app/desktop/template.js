@@ -1,10 +1,13 @@
 import Loader from './components/Loader'
 import WebGLExperiment from './components/WebGLExperiment'
+import Intro from './components/Intro'
+import Indochine from './components/Indochine'
 import AssetsLoader from './../../helpers/AssetsLoader'
 import Actions from './../../flux/actions'
 import EventsConstants from './../../flux/constants/EventsConstants'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
-export default class AppTemplate extends React.Component {
+class AppTemplate extends React.Component {
 
   constructor() {
 
@@ -19,6 +22,15 @@ export default class AppTemplate extends React.Component {
     return(
       <div className="main">
         <Loader />
+        <Router>
+          <div className="container">
+            <ul>
+              <li><Link to="/indochine">Indochine</Link></li>
+            </ul>
+            <Route exact path="/" component={ Intro } />
+            <Route path="/indochine" component={ Indochine } />
+          </div>
+        </Router>
         <WebGLExperiment />
       </div>
     )
@@ -33,3 +45,5 @@ export default class AppTemplate extends React.Component {
   }
 
 }
+
+export default AppTemplate
