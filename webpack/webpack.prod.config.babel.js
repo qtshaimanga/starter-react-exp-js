@@ -16,6 +16,8 @@ export default {
       'gsap',
       'dom-hand',
       'three',
+      'react',
+      'react-dom',
       './client/App.js'
     ]
   },
@@ -115,7 +117,9 @@ export default {
     }),
     new webpack.ProvidePlugin({
       'dom': 'dom-hand',
-      'THREE': 'three'
+      'THREE': 'three',
+      'React': 'react',
+      'ReactDOM': 'react-dom'
     }),
     new CopyWebpackPlugin( [ { from: 'static' } ], { ignore: [ '.DS_Store', '.keep' ] } ),
     new webpack.optimize.UglifyJsPlugin( {
