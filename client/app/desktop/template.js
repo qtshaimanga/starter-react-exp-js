@@ -1,12 +1,13 @@
 import Loader from './components/Loader'
 import WebGLExperiment from './components/WebGLExperiment'
 import Wrapper from './components/Wrapper'
-import Intro from './components/Intro'
-import Indochine from './components/Indochine'
+import Home from './components/Home'
+import About from './components/About'
+import NotFound from './components/NotFound'
 import AssetsLoader from './../../helpers/AssetsLoader'
 import Actions from './../../flux/actions'
 import EventsConstants from './../../flux/constants/EventsConstants'
-import { Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 class AppTemplate extends React.Component {
 
@@ -25,10 +26,14 @@ class AppTemplate extends React.Component {
           <Loader />
           <ul>
             <Link to="/">Home</Link>
-            <Link to="/indochine">Indochine</Link>
+            <Link to="/about">About</Link>
+            <Link to="/whatever">Not Found</Link>
           </ul>
-          <Route exact path="/" component={ Intro } />
-          <Route path="/indochine" component={ Indochine } />
+          <Switch>
+            <Route exact path="/" component={ Home } />
+            <Route path="/about" component={ About } />
+            <Route component={ NotFound } />
+          </Switch>
           <WebGLExperiment />
         </Wrapper>
       </Router>
