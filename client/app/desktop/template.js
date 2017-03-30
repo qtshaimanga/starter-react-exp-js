@@ -5,7 +5,11 @@ import Indochine from './components/Indochine'
 import AssetsLoader from './../../helpers/AssetsLoader'
 import Actions from './../../flux/actions'
 import EventsConstants from './../../flux/constants/EventsConstants'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Router, Route, Link } from 'react-router-dom'
+import createHashHistory from 'history/createHashHistory'
+
+const history = createHashHistory({ queryKey: false });
+
 
 class AppTemplate extends React.Component {
 
@@ -15,6 +19,12 @@ class AppTemplate extends React.Component {
 
     this.initLoader()
 
+    history.listen( location => { 
+      
+      console.log(location)
+
+    });
+
   }
 
   render() {
@@ -22,9 +32,10 @@ class AppTemplate extends React.Component {
     return(
       <div className="main">
         <Loader />
-        <Router>
+        <Router history={history}>
           <div className="container">
             <ul>
+              <li><Link to="/">Intro</Link></li>
               <li><Link to="/indochine">Indochine</Link></li>
             </ul>
             <Route exact path="/" component={ Intro } />

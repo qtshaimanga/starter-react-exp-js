@@ -13,7 +13,7 @@ class WebGLExperiment extends React.Component {
 
     super()
     
-    this.resources = props.resources
+    //this.resources = props.resources
 
     this.DELTA_TIME = 0
     this.CURRENT_TIME = 0
@@ -48,6 +48,7 @@ class WebGLExperiment extends React.Component {
     this.clock = new THREE.Clock()
 
     this.stats = new stats()
+    dom.classes.add( this.stats.dom, 'stats-js' )
     this.refs.parent.appendChild( this.stats.dom )
 
     this.Icosahedron = new Icosahedron()
