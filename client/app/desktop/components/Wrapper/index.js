@@ -2,13 +2,14 @@ import { withRouter } from 'react-router'
 
 class Wrapper extends React.Component {
 
-  constructor( props, context ) {
+  constructor( props ) {
 
     super()
     this.props = props
+    console.log( this.props.history )
     this.props.history.listen( ( location, action ) => {
 
-      console.log( location, action )
+      console.info( location, action )
 
     } )
 
