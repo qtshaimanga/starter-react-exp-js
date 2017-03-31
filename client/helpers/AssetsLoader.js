@@ -3,6 +3,7 @@ import AudioManager from './AudioManager'
 import VideoManager from './VideoManager'
 import Actions from './../flux/actions'
 import ressources from '../config/ressources'
+import AssetsManager from './AssetsManager'
 
 class AssetsLoader {
 
@@ -25,7 +26,8 @@ class AssetsLoader {
           return AudioManager
         case 'video':
           return VideoManager
-
+        case 'image':
+          return AssetsManager
       }
 
     }
@@ -68,7 +70,7 @@ class AssetsLoader {
   load() {
 
     return Promise.all( this.promises )
-    
+
   }
 
 }

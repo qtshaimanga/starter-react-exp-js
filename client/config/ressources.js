@@ -12,5 +12,10 @@ export default [
     type: 'model',
     id: 'polar-bear',
     url: 'assets/models/polar-bear.awd'
+  },
+  {
+    type: 'image',
+    id: 'panda',
+    url: 'assets/images/panda.jpg'
   }
 ]

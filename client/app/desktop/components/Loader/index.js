@@ -29,7 +29,7 @@ class Loader extends React.Component {
         </div>
       </div>
 
-    )    
+    )
 
   }
 

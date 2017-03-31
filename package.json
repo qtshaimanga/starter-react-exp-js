@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "@superguigui/wagner": "^0.1.5",
+    "assets-loader": "^0.5.0",
     "babel-preset-react": "^6.23.0",
     "dom-hand": "^1.0.2",
     "domready": "^1.0.8",

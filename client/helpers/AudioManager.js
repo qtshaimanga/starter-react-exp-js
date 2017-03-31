@@ -3,7 +3,7 @@ import Store from './../flux/store'
 import EventsConstants from './../flux/constants/EventsConstants'
 
 class AudioManager {
-  
+
   constructor() {
 
     this.blockMute = false
@@ -62,12 +62,12 @@ class AudioManager {
 
   /**
    * Load audio file
-   * @param {string} url 
-   * @param {function} onLoad 
-   * @param {function} onSucess 
-   * @param {function} onReject 
-   * @param {string} id 
-   * @param {array} options 
+   * @param {string} url
+   * @param {function} onLoad
+   * @param {function} onSucess
+   * @param {function} onReject
+   * @param {string} id
+   * @param {array} options
    */
   load( url, onLoad, onSucess, onReject, id, options = { volume: 1, loop: false } ) {
 
@@ -81,12 +81,12 @@ class AudioManager {
 
       }
     })
-    
+
   }
 
   /**
    * Get sound by id
-   * @param {string} id 
+   * @param {string} id
    */
   get( id ) {
 
@@ -99,12 +99,12 @@ class AudioManager {
 
   /**
    * Play sound by id
-   * @param {string} id 
+   * @param {string} id
    */
   play( id ) {
 
     const sound = Store.getResource( id )
-    
+
     if( typeof sound === 'undefined' ) return
     return sound.play()
 
@@ -112,11 +112,11 @@ class AudioManager {
 
   /**
    * Fade sound by id
-   * @param {string} id 
-   * @param {float} start 
-   * @param {float} end 
-   * @param {float} duration 
-   * @param {int} soundId 
+   * @param {string} id
+   * @param {float} start
+   * @param {float} end
+   * @param {float} duration
+   * @param {int} soundId
    */
   fade( id, start, end, duration, soundId ) {
 
@@ -127,9 +127,9 @@ class AudioManager {
 
   /**
    * Rate sound at id
-   * @param {string} id 
-   * @param {float} speed 
-   * @param {int} soundId 
+   * @param {string} id
+   * @param {float} speed
+   * @param {int} soundId
    */
   rate( id, speed, soundId ) {
 
