@@ -1,13 +1,12 @@
-import Loader from './components/Loader'
-import WebGLExperiment from './components/WebGLExperiment'
-import Wrapper from './components/Wrapper'
-import Home from './components/Home'
-import About from './components/About'
-import NotFound from './components/NotFound'
 import AssetsLoader from './../../helpers/AssetsLoader'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Actions from './../../flux/actions'
 import EventsConstants from './../../flux/constants/EventsConstants'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import routes from './../../config/routes'
+import Wrapper from './components/Wrapper'
+import Menu from './components/Menu'
+import Loader from './components/Loader'
+import WebGLExperiment from './components/WebGLExperiment'
 
 class AppTemplate extends React.Component {
 
@@ -19,21 +18,13 @@ class AppTemplate extends React.Component {
   }
 
   render() {
-    
+
     return(
       <Router>
         <Wrapper>
           <Loader />
-          <ul>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/whatever">Not Found</Link>
-          </ul>
-          <Switch>
-            <Route exact path="/" component={ Home } />
-            <Route path="/about" component={ About } />
-            <Route component={ NotFound } />
-          </Switch>
+          <Menu />
+          { routes }
           <WebGLExperiment />
         </Wrapper>
       </Router>
