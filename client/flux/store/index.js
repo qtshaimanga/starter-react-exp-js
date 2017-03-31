@@ -11,7 +11,8 @@ const Store = assign({}, EventEmitter2.prototype, {
   Mouse: { x: 0, y: 0, nX: 0, nY: 0 },
   Device:  { orientation: DeviceConstants.PORTRAIT },
   Resources: {},
-  getResource: ( id ) => Store.Resources[ id ]
+  getResource: ( id ) => Store.Resources[ id ],
+  Routes: { oldRoute: undefined, newRoute: undefined }
 
 })
 
@@ -33,6 +34,11 @@ Store.dispatchToken = Dispatcher.register(( payload ) => {
       break
     case EventsConstants.RESOURCES_READY:
       Store.Resources = item
+      Store.emit( actionType, item )
+      break
+    case EventsConstants.ROUTE_CHANGED:
+      Store.Routes.oldRoute = item.oldRoute
+      Store.Routes.newRoute = item.newRoute
       Store.emit( actionType, item )
       break
     default:

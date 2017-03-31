@@ -1,4 +1,5 @@
 import { withRouter } from 'react-router'
+import Actions from './../../../../flux/actions'
 
 class Wrapper extends React.Component {
 
@@ -6,10 +7,19 @@ class Wrapper extends React.Component {
 
     super()
     this.props = props
-    console.log( this.props.history )
+
+    this.pathname = this.props.location.pathname
+    Actions.routeChanged( undefined, this.pathname )
+    
     this.props.history.listen( ( location, action ) => {
 
-      console.info( location, action )
+      console.info( 'Route changed', location.pathname !== this.pathname )
+      if ( location.pathname !== this.pathname ) {
+
+        Actions.routeChanged( this.pathname, location.pathname )
+        this.pathname = location.pathname
+
+      }
 
     } )
 

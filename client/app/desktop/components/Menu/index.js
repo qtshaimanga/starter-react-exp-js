@@ -1,16 +1,19 @@
-import { Link } from 'react-router-dom'
+import './Menu.styl'
 
+import { NavLink } from 'react-router-dom'
 
 class Menu extends React.Component {
 
   render() {
 
     return(
-      <ul>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/whatever">Not Found</Link>
-      </ul>
+      <nav className="navigation">
+        <ul className="navigation__list">
+          <NavLink exact to="/" className="navigation__item" activeClassName="navigation__item--active">Home</NavLink>
+          <NavLink to="/about" className="navigation__item" activeClassName="navigation__item--active">About</NavLink>
+          <NavLink to="/whatever" className="navigation__item" activeClassName="navigation__item--active">Not Found</NavLink>
+        </ul>
+      </nav>
     )
 
   }

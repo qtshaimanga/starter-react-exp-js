@@ -1,6 +1,4 @@
-import BasePage from './../BasePage'
-
-class About extends BasePage {
+class About extends React.Component {
   
   constructor( props ) {
 

@@ -1,8 +1,12 @@
+html
+  font-size 16px
+
 body
   width 100%
   height 100%
   overflow hidden
   background-color $WHITE
+  font-family 'Farnham'
 
 .full
   position absolute
@@ -25,15 +29,31 @@ body
   top auto !important
   bottom 0
 
+@import './../../../../style/base/baseDir.styl'
+
 .page
   position absolute
   z-index 1
   bottom 0
   right 0
-  width 50%
-  height 20%
-  background-color rgba( $BLACK, 0.1 )
+  width 30%
+  height 10%
+  background-color darken( $WHITE, 3 )
   display flex
   flex-flow column nowrap
   justify-content center
   align-items center
+  
+  &-enter
+    transform translate3d( 100%, 0, 0 )
+
+  &-enter-active
+    transform translate3d( 0, 0, 0 )
+    transition: transform 500ms $easeOutExpo
+
+  &-leave
+    transform translate3d( 0, 0, 0 )
+
+  &-leave-active
+    transform translate3d( 100%, 0, 0 )
+    transition: transform 500ms $easeInExpo
