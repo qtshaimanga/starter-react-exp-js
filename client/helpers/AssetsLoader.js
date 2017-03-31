@@ -28,6 +28,8 @@ class AssetsLoader {
           return VideoManager
         case 'image':
           return AssetsManager
+        case 'json':
+          return AssetsManager
       }
 
     }
