@@ -1,8 +1,12 @@
+html
+  font-size 16px
+
 body
   width 100%
   height 100%
   overflow hidden
   background-color $WHITE
+  font-family 'Farnham'
 
 .full
   position absolute
@@ -24,3 +28,16 @@ body
 .stats-js
   top auto !important
   bottom 0
+
+.page
+  position absolute
+  z-index 1
+  bottom 0
+  right 0
+  width 30%
+  height 10%
+  background-color darken( $WHITE, 3 )
+  display flex
+  flex-flow column nowrap
+  justify-content center
+  align-items center

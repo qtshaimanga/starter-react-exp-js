@@ -6,8 +6,8 @@ import { Route, Switch } from 'react-router-dom'
 
 export default (
   <Switch>
-    <Route exact path="/" component={ Home } />
-    <Route path="/about" component={ About } />
-    <Route component={ NotFound } />
+      <Route exact path="/" component={ Home } />
+      <Route path="/about" component={ About } />
+      <Route component={ NotFound } />
   </Switch>
-);
+)

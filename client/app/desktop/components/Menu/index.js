@@ -1,27 +1,26 @@
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import { Link } from 'react-router-dom'
 import './Menu.styl'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { NavLink } from 'react-router-dom'
 
 class Menu extends React.Component {
 
   render() {
 
     return(
-      <div>
-        <ReactCSSTransitionGroup
-        transitionName="pageSlider"
-        transitionAppear={true}
-        transitionAppearTimeout={5000}
-        transitionEnter={false}
-        transitionLeave={false}
-        className="page">
-          <ul>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/whatever">Not Found</Link>
-          </ul>
-        </ReactCSSTransitionGroup>
-      </div>
+      <ReactCSSTransitionGroup
+      component="nav"
+      transitionName="pageSlider"
+      transitionAppear={true}
+      transitionAppearTimeout={3000}
+      transitionEnter={false}
+      transitionLeave={false}
+      className="navigation">
+        <ul className="navigation__list">
+          <NavLink exact to="/" className="navigation__item" activeClassName="navigation__item--active">Home</NavLink>
+          <NavLink to="/about" className="navigation__item" activeClassName="navigation__item--active">About</NavLink>
+          <NavLink to="/whatever" className="navigation__item" activeClassName="navigation__item--active">Not Found</NavLink>
+        </ul>
+      </ReactCSSTransitionGroup>
     )
 
   }

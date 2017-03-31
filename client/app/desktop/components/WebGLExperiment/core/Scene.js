@@ -28,7 +28,7 @@ export default class Scene extends THREE.Scene {
     this.camera.lookAt( new THREE.Vector3( 0, 0, 0 ) )
 
     this.controls = new OrbitControls( this.camera, this.renderer.domElement )
-    this.controls.enabled = false
+    this.controls.enabled = true
 
     this.postProcessing = {
       fisheye: {
@@ -37,8 +37,8 @@ export default class Scene extends THREE.Scene {
     }
     this.mouseDownProgress = 0
 
-    this.bind()
-    this.addListeners()
+    // this.bind()
+    // this.addListeners()
     this.initLights()
     this.initPostProcessing()
 

@@ -75,6 +75,14 @@ const Actions = {
       item: null
     })
 
+  },
+  routeChanged( oldRoute, newRoute ) {
+
+    Dispatcher.dispatch({
+      type: EventsConstants.ROUTE_CHANGED,
+      item: { oldRoute: oldRoute, newRoute: newRoute }
+    })
+
   }
 
 }

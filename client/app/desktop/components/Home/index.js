@@ -1,9 +1,17 @@
 class Home extends React.Component {
 
+  constructor( props ) {
+
+    super( props )
+
+  }
+
   render() {
 
     return(
-      <div>Home</div>
+      <div className="page">
+        <h1>Home</h1>
+      </div>
     )
 
   }
