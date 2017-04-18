@@ -1,4 +1,4 @@
-import Page from './../base/Page'
+import Page from './../../base/Page'
 
 class NotFound extends Page {
 

@@ -4,8 +4,8 @@ import Actions from './../../flux/actions'
 import EventsConstants from './../../flux/constants/EventsConstants'
 import routes from './../../config/routes'
 import Wrapper from './components/base/Wrapper'
-import Menu from './components/Menu'
-import Loader from './components/Loader'
+import Menu from './components/ui/Menu'
+import Loader from './components/base/Loader'
 import WebGLExperiment from './components/WebGLExperiment'
 
 class AppTemplate extends React.Component {

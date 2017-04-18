@@ -1,7 +1,7 @@
 import './Loader.styl'
-import Store from './../../../../flux/store'
-import Actions from './../../../../flux/actions'
-import EventsConstants from './../../../../flux/constants/EventsConstants'
+import Store from './../../../../../flux/store'
+import Actions from './../../../../../flux/actions'
+import EventsConstants from './../../../../../flux/constants/EventsConstants'
 
 class Loader extends React.Component {
 

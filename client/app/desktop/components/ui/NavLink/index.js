@@ -1,4 +1,4 @@
-import Actions from './../../../../flux/actions'
+import Actions from './../../../../../flux/actions'
 
 class NavLink extends React.Component {
 

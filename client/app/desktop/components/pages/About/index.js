@@ -1,6 +1,6 @@
-import Page from './../base/Page'
+import Page from './../../base/Page'
 
-class Home extends Page {
+class About extends Page {
 
   constructor( props ) {
 
@@ -28,7 +28,7 @@ class Home extends Page {
 
     return(
       <div className="page" ref="parent">
-        <h1>Home</h1>
+        <h1>About</h1>
       </div>
     )
 
@@ -42,4 +42,4 @@ class Home extends Page {
 
 }
 
-export default Home
+export default About
