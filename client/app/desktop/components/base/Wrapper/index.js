@@ -1,5 +1,5 @@
 import { withRouter } from 'react-router'
-import Actions from './../../../../flux/actions'
+import Actions from './../../../../../flux/actions'
 
 class Wrapper extends React.Component {
 
@@ -13,7 +13,6 @@ class Wrapper extends React.Component {
     
     this.props.history.listen( ( location, action ) => {
 
-      console.info( 'Route changed', location.pathname !== this.pathname )
       if ( location.pathname !== this.pathname ) {
 
         Actions.routeChanged( this.pathname, location.pathname )

@@ -1,46 +1,42 @@
-class Home extends React.Component {
+import Page from './../base/Page'
+
+class Home extends Page {
 
   constructor( props ) {
 
     super( props )
-    this.tl = new TimelineMax({ paused: true })
+    this.history = props.history
 
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
-    console.log("mount",this.tl)
-    // this.transitionIn()
-
-  }
-
-  componentWillUnmount(){
-
-    console.log("unmount", this.tl)
-    // this.transitionOut()
+    super.componentDidMount()
 
   }
 
-  transitionIn() {
+  setupAnimations(){
 
-    //this.tlIn.play( 0 )
-
-  }
-
-
-  transitionOut() {
-
-    //this.tlOut.play( 0 )
+    super.setupAnimations()
+    this.tlIn.set( this.refs.parent, { visibility: 'visible' } )
+    this.tlIn.fromTo( this.refs.parent, 0.5, { opacity: 0, x: 500 }, { opacity: 1, x: 0 })
+    this.tlOut.fromTo( this.refs.parent, 0.5, { opacity: 1, x: 0 }, { opacity: 0, x: 500 })
 
   }
 
   render() {
 
     return(
-      <div className="page">
+      <div className="page" ref="parent">
         <h1>Home</h1>
       </div>
     )
+
+  }
+  didTransitionOutComplete() {
+
+    super.didTransitionOutComplete()
+    this.history.push( this.nextPath )
 
   }
 

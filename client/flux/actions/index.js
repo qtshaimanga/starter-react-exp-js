@@ -83,6 +83,30 @@ const Actions = {
       item: { oldRoute: oldRoute, newRoute: newRoute }
     })
 
+  },
+  changePage( newPath ) {
+
+    Dispatcher.dispatch({
+      type: EventsConstants.CHANGE_PAGE,
+      item: newPath
+    })
+
+  },
+  transitionOut( nextPath ) {
+
+    Dispatcher.dispatch({
+      type: EventsConstants.TRANSITION_OUT,
+      item: nextPath
+    })
+
+  },
+  onTransitionOutComplete() {
+
+    Dispatcher.dispatch({
+      type: EventsConstants.TRANSITION_OUT_COMPLETE,
+      item: undefined
+    })
+
   }
 
 }

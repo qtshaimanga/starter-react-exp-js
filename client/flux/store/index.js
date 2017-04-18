@@ -1,6 +1,7 @@
 import { EventEmitter2 } from 'eventemitter2'
 import assign from 'object-assign'
 import Dispatcher from '../dispatcher'
+import Actions from './../actions'
 import EventsConstants from '../constants/EventsConstants'
 import DeviceConstants from '../constants/DeviceConstants'
 
@@ -39,6 +40,11 @@ Store.dispatchToken = Dispatcher.register(( payload ) => {
     case EventsConstants.ROUTE_CHANGED:
       Store.Routes.oldRoute = item.oldRoute
       Store.Routes.newRoute = item.newRoute
+      Store.emit( actionType, item )
+      break
+    case EventsConstants.CHANGE_PAGE:
+      if( Store.Routes.newRoute === item ) break
+      setTimeout( () => Actions.transitionOut( item ) )
       Store.emit( actionType, item )
       break
     default:
