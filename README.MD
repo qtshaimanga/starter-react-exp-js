@@ -1,16 +1,20 @@
-# Three.js - Boilerplate
+# React Experiment - Boilerplate
 
-Experiment boilerplate with three.js, Wagner, Webpack 2 & gsap
+> WIP Experiment boilerplate
 
 ## Technologies
 
+- React
+- react-router
 - Babel | ES2015
 - Webpack 2
 - Stylus
 - GSAP - TweenMax
+- Pixi.js
 - dom-hand
 - Three.js
-- Wagner
+- glslify
+- Wagner post-processing
 
 ## Install dependencies
 
