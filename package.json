@@ -4,8 +4,8 @@
   "description": "Experiment boilerplate with React, react-router, three.js, glslify, post-processing, pixi.js & gsap",
   "main": "clients/App.js",
   "scripts": {
-    "start": "cross-env webpack-dev-server --env.dev --hot --config ./webpack/webpack.config.js",
-    "build": "cross-env webpack --env.prod --env.min --config ./webpack/webpack.config.js --progress --profile --colors"
+    "start": "cross-env webpack-dev-server --hot --config ./webpack/webpack.dev.js",
+    "build": "cross-env webpack --env.prod --env.min --config ./webpack/webpack.dev.js --progress --profile --colors"
   },
   "repository": {
     "type": "git",
@@ -66,7 +66,8 @@
     "stylus-loader": "^3.0.1",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "2.9.7"
+    "webpack-dev-server": "2.9.7",
+    "webpack-merge": "^4.1.1"
   },
   "dependencies": {
     "@superguigui/wagner": "^0.1.6",
