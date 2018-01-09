@@ -1,0 +1,13 @@
+.DS_Store
+
+.idea
+
+node_modules/
+
+doc/
+
+*.log
+
+dist/
+
+.vscode/
