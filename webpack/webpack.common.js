@@ -5,12 +5,19 @@ const autoprefixer = require ('autoprefixer')
 module.exports =  {
   context: path.resolve( __dirname, '..' ),
   target: "web",
-  externals: ["react"],
-  entry: './client/App.js',
+  entry: {
+    app: [
+      'dom-hand',
+      'gsap',
+      'react',
+      'react-dom',
+      './client/App.js'
+  ]
+  },
   output: {
     path: path.resolve(__dirname, '..', 'dist'),
     filename: 'app.bundle.js',
-    publicPath: '/', //-> solve to prod cf. ./
+    publicPath: process.env.NODE_ENV === 'prod' ? './' : '/',
     pathinfo: true
   },
   resolve: {
@@ -18,16 +25,10 @@ module.exports =  {
       'node_modules',
       path.resolve( __dirname, '..', 'client' )
     ],
-    extensions: [".js", ".json", ".jsx"]
+    extensions: [".js", ".json", ".jsx", ".styl"]
   },
   module: {
     rules: [
-      {
-        test: /\.js?$/,
-        enforce: 'pre',
-        exclude: [ /node_modules/, /client\/vendor/ ],
-        loader: 'eslint-loader'
-      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -82,5 +83,21 @@ module.exports =  {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.DEBUG': JSON.stringify(process.env.DEBUG)
+    }),
+    new webpack.ProvidePlugin({
+      'dom': 'dom-hand',
+      'gsap': 'gsap',
+      'React': 'react',
+      'ReactDOM': 'react-dom'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.bundle.js'
+    })
+  ]
 }

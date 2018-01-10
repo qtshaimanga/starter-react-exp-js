@@ -1,3 +1,3 @@
 console.log("App started");
 
-//start app and check device before mount
+TweenMax.to( document.body , 0.5, { backgroundColor: 'black' })

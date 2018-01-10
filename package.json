@@ -4,8 +4,8 @@
   "description": "Experiment boilerplate with React, react-router, three.js, glslify, post-processing, pixi.js & gsap",
   "main": "clients/App.js",
   "scripts": {
-    "start": "cross-env webpack-dev-server --hot --config ./webpack/webpack.dev.js",
-    "build": "cross-env webpack --env.prod --env.min --config ./webpack/webpack.dev.js --progress --profile --colors"
+    "start": "cross-env NODE_ENV=dev webpack-dev-server --hot --config ./webpack/webpack.dev.js",
+    "build": "cross-env NODE_ENV=prod webpack --config ./webpack/webpack.prod.js --progress --profile --colors"
   },
   "repository": {
     "type": "git",
