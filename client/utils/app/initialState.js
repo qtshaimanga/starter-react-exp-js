@@ -12,8 +12,13 @@ class InitialState {
 
   bind() {
 
-    [ 'onWindowResize', 'onMouseMove', 'onMouseUp', 'onMouseDown', 'onWindowBlur', 'onWindowFocus' ]
-         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) )
+    [ 'onWindowResize',
+      'onMouseMove', 
+      'onMouseUp', 
+      'onMouseDown', 
+      'onWindowBlur', 
+      'onWindowFocus'
+    ].forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) )
 
   }
 
